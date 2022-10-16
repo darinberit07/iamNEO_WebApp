@@ -8,8 +8,8 @@ export class Addusermodal extends Component{
         this.handleSubmit=this.handleSubmit.bind(this); 
         this.handleFileSelected = this.handleFileSelected.bind(this);
     }
-    imgname = "anonymous"
-    imagesrc = process.env.REACT_APP_PHOTOPATH+this.imgname;
+    imgname = "unknownuser.png"
+    imagesrc = process.env.REACT_APP_PHOTOPATH+'/'+this.imgname;
 
     componentDidMount(){
         fetch(process.env.REACT_APP_API)
@@ -65,7 +65,7 @@ export class Addusermodal extends Component{
         })
         .then(res=>res.json())
         .then((result)=>{
-            this.imagesrc=process.env.REACT_APP_PHOTOPATH+result;
+            this.imagesrc=process.env.REACT_APP_PHOTOPATH+'/'+result;
         },
         (error)=>{
             alert('Failed');
@@ -82,7 +82,7 @@ centered>
 
 <Modal.Header closebutton>
     <Modal.Title id="contained-modal-title-vcenter">
-            Add User 2
+            Add User Details
     </Modal.Title>
 </Modal.Header>
 <Modal.Body>
@@ -136,13 +136,13 @@ centered>
                 </Form.Group>
                 <Form.Group>
                     <Button variant="primary" type="submit">
-                        Add User 3
+                        Add User
                     </Button>
                 </Form.Group>
             </Form>
         </Col>
         <Col sm={6}>
-            <Image width="400px" height="400px" src={this.imagesrc}/>
+            <Image width="200px" height="200px" src={this.imagesrc}/>
             <input onChange={this.handleFileSelected} type="File"/>
         </Col>
     </Row>

@@ -63,13 +63,13 @@ centered>
     </Modal.Title>
 </Modal.Header>
 <Modal.Body>
-    <Row sm={4}>
+    <Row>
         <Col sm={7}>
             <Form onSubmit={this.handleSubmit}>
                 <Form.Group controlId="UserID"> 
                     <Form.Label>User ID</Form.Label>
                     <Form.Control type="text" name="UserID" required
-                    //disabled
+                    disabled
                     defaultValue={this.props.uid}
                     placeholder="Enter User ID"/>
                 </Form.Group>
@@ -90,8 +90,8 @@ centered>
                     <Form.Control type="date" name="DOB" required
                     defaultValue={this.props.dob}
                     placeholder="Enter DOB"/>
-            </Form.Group>
-            <Form.Group controlId="PhoneNO"> 
+                </Form.Group>
+                <Form.Group controlId="PhoneNO"> 
                     <Form.Label>Phone num</Form.Label>
                     <Form.Control type="text" name="PhoneNo" required
                     defaultValue={this.props.phno}
@@ -129,15 +129,12 @@ centered>
             </Form>
         </Col>
     </Row>
-        </Modal.Body>
+</Modal.Body>
 <Modal.Footer>
     <Button variant="danger" onClick={this.props.onHide}>Close</Button>
         </Modal.Footer>
 </Modal>
-
-
-            </div>
-
+</div>
         )
     }
 }
