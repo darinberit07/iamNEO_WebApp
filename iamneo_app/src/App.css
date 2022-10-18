@@ -1,6 +1,7 @@
 .App {
   text-align: center;
 }
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
 
 .App-logo {
   height: 40vmin;
@@ -21,7 +22,19 @@
     animation: App-logo-spin infinite 20s linear;
   }
 }
+html {
+  font-family: "Montserrat", sans-serif;
 
+}
+#img {
+  border: 2px solid #fff;
+  color: white;
+  font-size: 50px;
+  -moz-box-shadow: 10px 10px 50px #ccc;
+  -webkit-box-shadow: 10px 10px 50px #ccc;
+  box-shadow: 10px 10px 50px #ccc;
+  position: center;
+}
 .App-header {
   background-color: #282c34;
   min-height: 100vh;

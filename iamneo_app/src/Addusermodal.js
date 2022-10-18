@@ -84,6 +84,10 @@ centered>
     <Modal.Title id="contained-modal-title-vcenter">
             Add User Details
     </Modal.Title>
+    <Modal.Title>
+    <button button type="button" class="btn-close" aria-label="Close" onClick={this.props.onHide}>Close
+    </button>
+        </Modal.Title>
 </Modal.Header>
 <Modal.Body>
     <Row sm={4}>
@@ -134,11 +138,7 @@ centered>
                     <Form.Control type="text" name="ImageName" required
                     placeholder="Enter image name"/>
                 </Form.Group>
-                <Form.Group>
-                    <Button variant="primary" type="submit">
-                        Add User
-                    </Button>
-                </Form.Group>
+                
             </Form>
         </Col>
         <Col sm={6}>
@@ -146,6 +146,12 @@ centered>
             <input onChange={this.handleFileSelected} type="File"/>
         </Col>
     </Row>
+    &nbsp;&nbsp;&nbsp;
+    <Form.Group>
+                    <Button variant="success" type="submit">
+                        Add User
+                    </Button>
+                </Form.Group>
         </Modal.Body>
 <Modal.Footer>
     <Button variant="danger" onClick={this.props.onHide}>Close</Button>
