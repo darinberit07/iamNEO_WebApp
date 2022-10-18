@@ -13,6 +13,14 @@ export class Userdetails extends Component{
             UseridFilter:"", NameFilter:"", WithoutFilter:[]
         }
     }
+    changeUseridFilter = (e)=>{
+        this.state.UseridFilter=e.target.value;
+        this.FilterFunc();
+    }
+    changeNameFilter = (e)=>{
+        this.state.NameFilter=e.target.value;
+        this.FilterFunc();
+    }
     FilterFunc(){
         var UseridFilter = this.state.UseridFilter;
         var NameFilter = this.state.NameFilter;
@@ -40,14 +48,7 @@ export class Userdetails extends Component{
         });
         this.setState({dets:sorted_data});
     }
-    hangeUseridFilter = (e)=>{
-        this.state.UseridFilter=e.target.value;
-        this.FilterFn();
-    }
-    changeNameFilter = (e)=>{
-        this.state.NameFilter=e.target.value;
-        this.FilterFunc();
-    }
+    
     refreshList(){
         fetch(process.env.REACT_APP_API)
         .then(response=>response.json())
@@ -81,35 +82,47 @@ export class Userdetails extends Component{
         return(
             <div>
                 <ButtonToolbar>
-                    <Button variant='light' size='sm'
+                    <Button variant='info' size='md'
                     onClick={()=> this.setState({addModalShow:true})}>
                         Add User
                     </Button>
                     <Addusermodal show={this.state.addModalShow}
                     onHide={addModalClose}/>
-                <Button variant="primary" type="button" className="btn btn-light" size = "sm"
+                    <br></br>
+                <Button variant="dark" type="button" className="btn btn-green" size = "sm"
             onClick={()=>this.sortResult('UserID',true)}>
                 {/*<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-arrow-down-square-fill" viewBox="0 0 16 16">
                 <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm6.5 4.5v5.793l2.146-2.147a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-3-3a.5.5 0 1 1 .708-.708L7.5 10.293V4.5a.5.5 0 0 1 1 0z"/>
         </svg>*/}
         Show Users
         </Button>
-                <input className="form-control m-2"
-                    onChange={this.changeNameFilter}
-                    placeholder="Filter by Name"/>
-
-<button type="button" className="btn btn-light"
+        &nbsp;&nbsp;
+        <Button variant="dark" type="button" className="btn btn-green" size = "sm"
             onClick={()=>this.sortResult('UserID',true)}>
+                {/*<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-arrow-down-square-fill" viewBox="0 0 16 16">
+                <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm6.5 4.5v5.793l2.146-2.147a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-3-3a.5.5 0 1 1 .708-.708L7.5 10.293V4.5a.5.5 0 0 1 1 0z"/>
+        </svg>*/}
+        Refresh List
+        </Button>
+                <input className="form-control m-2"
+                    onChange={this.changeUseridFilter&&this.changeNameFilter }
+                    placeholder="Filter by Name"/>
+<button type="button" className="btn btn-light"
+            onClick={()=>this.sortResult('UserID',false)}>
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-arrow-down-square-fill" viewBox="0 0 16 16">
                 <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm6.5 4.5v5.793l2.146-2.147a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-3-3a.5.5 0 1 1 .708-.708L7.5 10.293V4.5a.5.5 0 0 1 1 0z"/>
-        </svg>
+                </svg>
+                &nbsp;
+                Sort descending by UserID
             </button>
-            
+            &nbsp;&nbsp;
             <button type="button" className="btn btn-light"
-            onClick={()=>this.sortResult('UserID',false)}>
+            onClick={()=>this.sortResult('UserID',true)}>
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-arrow-up-square-fill" viewBox="0 0 16 16">
                 <path d="M2 16a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2zm6.5-4.5V5.707l2.146 2.147a.5.5 0 0 0 .708-.708l-3-3a.5.5 0 0 0-.708 0l-3 3a.5.5 0 1 0 .708.708L7.5 5.707V11.5a.5.5 0 0 0 1 0z"/>
                 </svg>
+                &nbsp;
+                Sort ascending by UserID
             </button>
             </ButtonToolbar>
                 <Table className="mt-4" striped bordered hover size="sm">
@@ -165,8 +178,8 @@ export class Userdetails extends Component{
                                         <Button type = "button" className="btn btn-red mr-1" variant="danger" size='sm'
                                         onClick={()=>this.deleteUser(det.UserID)}>
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-trash-fill" viewBox="0 0 16 16">
-                    <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
-                    </svg>
+                                            <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
+                                            </svg>
                                         </Button>
                                     </ButtonToolbar>        
                                         </td>
