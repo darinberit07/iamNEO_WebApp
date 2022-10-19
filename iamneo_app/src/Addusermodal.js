@@ -85,7 +85,7 @@ centered>
             Add User Details
     </Modal.Title>
     <Modal.Title>
-    <button button type="button" class="btn-close" aria-label="Close" onClick={this.props.onHide}>Close
+    <button button type="button" class="btn-close" aria-label="Close" onClick={this.props.onHide}>
     </button>
         </Modal.Title>
 </Modal.Header>
